@@ -36,7 +36,7 @@ int main(void)
     
     printf("Item\t Unit \t\t Purchase\n");
     printf("\t Price \t\t Date\n");
-    printf("%d\t $%.2f \t %d/%d/%d", number, price, mm, dd, yyyy);
+    printf("%-d\t $%.2f \t %-d/%d/%d", number, price, mm, dd, yyyy);
 
     return 0;
 }

@@ -16,14 +16,14 @@ Exercise 2.6:
 int main(void)
 {
 
-    int x;
+    double x;
     printf("3x^5 + 2x^4 -5x^3 -x^2 + 7x -6\n");
     printf("Enter a value for x: ");
-    scanf("%d", &x);
+    scanf("%lf", &x);
 
-    int result = ((((3*x + 2)*x  -5)*x  -1)*x + 7)*x  -6;
+    double result = ((((3*x + 2)*x  -5)*x  -1)*x + 7)*x  -6;
 
-    printf("Result: %d", result);
+    printf("Result: %.2f", result);
 
     return 0;
 

@@ -21,15 +21,15 @@ int main(void)
     int coeff_2  = -1;
     int coeff_l  =  7;
     int constant = -6;
-    int x;
+    double x;
 
 
     printf("3x^5 + 2x^4 -5x^3 -x^2 + 7x -6\n");
     printf("Enter a value for x: ");
-    scanf("%d", &x);
+    scanf("%lf", &x);
 
-    int result =  coeff_5*(x*x*x*x*x) +  coeff_4*(x*x*x*x)  + coeff_3*(x*x*x) + coeff_2*(x*x) + coeff_l*(x) + constant;
-    printf("Result: %d", result);
+    double result =  coeff_5*(x*x*x*x*x) +  coeff_4*(x*x*x*x)  + coeff_3*(x*x*x) + coeff_2*(x*x) + coeff_l*(x) + constant;
+    printf("Result: %.2f", result);
 
     
 
