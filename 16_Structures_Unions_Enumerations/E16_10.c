@@ -2,9 +2,9 @@
 
 /*
 
-The following structures are designed to store information about objects on a graphics
+The following structures are designed to store information about objects
+    on a graphics screen:
 
-    screen:
     struct point { int x, y; };
     struct rectangle { struct point upper_left, lower_right; };
 
@@ -25,12 +25,63 @@ argument:
 
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 
+struct point {
+  int x;
+  int y;
+};
 
+struct rectangle {
+  struct point upper_left;
+  struct point lower_right;
+};
 
-int main(void){
-    
-    return 0;
+int area(struct rectangle r);
+struct point center(struct rectangle r);
+struct rectangle move(struct rectangle r, int x, int y);
+bool contains(struct rectangle r, struct point p);
+
+int main(void) {
+
+  struct rectangle r = {.upper_left = {.x = 0, .y = 0},
+                        .lower_right = {.x = 10, .y = 10}};
+  struct point p = {.x = 5, .y = 5};
+  struct point p2 = {.x = 15, .y = 15};
+
+  printf("Area: %d\n", area(r));
+  printf("Center: %d %d\n", center(r).x, center(r).y);
+  printf("Move: %d %d\n", move(r, 1, 1).upper_left.x,
+         move(r, 1, 1).lower_right.y);
+  printf("Contains: %d\n", contains(r, p));
+  printf("Contains: %d\n", contains(r, p2));
+
+  return 0;
 }
 
+// (a) Compute the area of r.
+int area(struct rectangle r) {
+  return (r.lower_right.x - r.upper_left.x) *
+         (r.lower_right.y - r.upper_left.y);
+}
+
+// (b) Compute the center of r, returning it as a point value.
+struct point center(struct rectangle r) {
+  return (struct point){.x = (r.upper_left.x + r.lower_right.x) / 2,
+                        .y = (r.upper_left.y + r.lower_right.y) / 2};
+}
+
+// (c) Move r by x units in the x direction and y units in the y direction,
+//     returning the modified version of r.
+struct rectangle move(struct rectangle r, int x, int y) {
+  return (struct rectangle){
+      .upper_left = {.x = r.upper_left.x + x, .y = r.upper_left.y + y},
+      .lower_right = {.x = r.lower_right.x + x, .y = r.lower_right.y + y}};
+}
+
+// (d) Determine whether a point p lies within r, returning true or false.
+bool contains(struct rectangle r, struct point p) {
+  return p.x >= r.upper_left.x && p.x <= r.lower_right.x &&
+         p.y >= r.upper_left.y && p.y <= r.lower_right.y;
+}
